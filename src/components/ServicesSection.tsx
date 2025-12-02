@@ -206,6 +206,7 @@ const ServicesSection = () => {
           {filteredServices.map((service, index) => (
             <ServiceCard
               key={service.id}
+              id={service.id}
               name={service.name}
               logo={service.logo}
               price={service.price}
