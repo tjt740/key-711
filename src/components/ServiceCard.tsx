@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface ServiceCardProps {
+  id?: number;
   name: string;
   logo: string;
   price: number;
@@ -13,6 +15,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({
+  id = 1,
   name,
   logo,
   price,
@@ -21,7 +24,12 @@ const ServiceCard = ({
   tag,
   delay = 0,
 }: ServiceCardProps) => {
+  const navigate = useNavigate();
   const discount = Math.round(((originalPrice - price) / originalPrice) * 100);
+
+  const handleBuy = () => {
+    navigate(`/checkout?productId=${id}`);
+  };
 
   return (
     <div
@@ -74,7 +82,7 @@ const ServiceCard = ({
 
       {/* 底部按钮 */}
       <div className="p-4 bg-muted/50 border-t border-border">
-        <Button variant="hero" className="w-full py-3 flex items-center justify-center gap-2">
+        <Button variant="hero" className="w-full py-3 flex items-center justify-center gap-2" onClick={handleBuy}>
           立即购买
           <span className="text-xs bg-white/20 px-1.5 py-0.5 rounded">省 {discount}%</span>
         </Button>
