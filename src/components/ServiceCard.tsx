@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Check, Users } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 interface ServiceCardProps {
   name: string;
@@ -26,72 +26,58 @@ const ServiceCard = ({
 
   return (
     <div
-      className="group relative rounded-2xl bg-card border border-border p-6 transition-all duration-500 hover:shadow-card-hover hover:border-primary/30 hover:-translate-y-1 animate-fade-in"
+      className="group relative bg-card rounded-2xl border border-border hover:border-primary/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col animate-fade-in"
       style={{ animationDelay: `${delay}ms` }}
     >
-      {/* Tag */}
+      {/* 热门/促销标签 */}
       {tag && (
-        <div className="absolute -top-3 left-6 px-3 py-1 rounded-full gradient-primary text-xs font-bold text-primary-foreground">
+        <div className="absolute top-0 right-0 bg-destructive text-destructive-foreground text-[10px] font-bold px-3 py-1 rounded-bl-xl z-10">
           {tag}
         </div>
       )}
 
-      {/* Header */}
-      <div className="flex items-start justify-between mb-4">
-        <div className="w-14 h-14 rounded-xl bg-muted flex items-center justify-center overflow-hidden">
-          <img src={logo} alt={name} className="w-10 h-10 object-contain" />
+      <div className="p-5 flex-1">
+        {/* 产品头部 */}
+        <div className="flex items-start justify-between mb-4">
+          <div className="w-14 h-14 rounded-xl bg-muted flex items-center justify-center overflow-hidden shadow-lg">
+            <img src={logo} alt={name} className="w-10 h-10 object-contain" />
+          </div>
+          <div className="flex flex-col items-end">
+            <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+              库存充足
+            </span>
+          </div>
         </div>
-        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-          <Users className="w-3 h-3" />
-          <span>{activeUsers.toLocaleString()}</span>
+
+        <h3 className="text-lg font-bold text-foreground mb-1">{name}</h3>
+        <p className="text-muted-foreground text-xs mb-4">{activeUsers.toLocaleString()}+ 用户正在使用</p>
+
+        {/* 价格区域 */}
+        <div className="flex items-baseline gap-2 mb-4">
+          <span className="text-3xl font-extrabold text-foreground">${price.toFixed(2)}</span>
+          <span className="text-sm text-muted-foreground font-medium">/月</span>
+          <span className="text-xs text-muted-foreground line-through ml-auto">原价 ${originalPrice.toFixed(2)}</span>
         </div>
-      </div>
 
-      {/* Name */}
-      <h3 className="text-lg font-bold text-foreground mb-2">{name}</h3>
-
-      {/* Price */}
-      <div className="flex items-baseline gap-2 mb-4">
-        <span className="text-3xl font-extrabold text-foreground">${price.toFixed(2)}</span>
-        <span className="text-sm text-muted-foreground">/月</span>
-        <span className="text-sm text-muted-foreground line-through">${originalPrice.toFixed(2)}</span>
-        <span className="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-xs font-semibold">
-          -{discount}%
-        </span>
-      </div>
-
-      {/* Features */}
-      <ul className="space-y-2 mb-6">
-        {features.slice(0, 3).map((feature, index) => (
-          <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
-            <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-            <span className="line-clamp-1">{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Active Users Avatars */}
-      <div className="flex items-center gap-2 mb-4">
-        <div className="flex -space-x-2">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="w-7 h-7 rounded-full border-2 border-card flex items-center justify-center text-xs text-primary-foreground font-medium"
-              style={{ 
-                background: `linear-gradient(135deg, hsl(${221 + i * 30} 70% 55%), hsl(${270 + i * 30} 70% 60%))`,
-              }}
-            >
-              {String.fromCharCode(65 + i)}
+        {/* 权益列表 */}
+        <div className="space-y-2 mb-6">
+          {features.slice(0, 3).map((feature, index) => (
+            <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground">
+              <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              <span>{feature}</span>
             </div>
           ))}
         </div>
-        <span className="text-xs text-muted-foreground">+{activeUsers - 4} 成员</span>
       </div>
 
-      {/* CTA */}
-      <Button variant="hero" className="w-full">
-        立即订阅
-      </Button>
+      {/* 底部按钮 */}
+      <div className="p-4 bg-muted/50 border-t border-border">
+        <Button variant="hero" className="w-full py-3 flex items-center justify-center gap-2">
+          立即购买 
+          <span className="text-xs bg-white/20 px-1.5 py-0.5 rounded">省 {discount}%</span>
+        </Button>
+      </div>
     </div>
   );
 };
