@@ -15,13 +15,13 @@ interface CategoryTabsProps {
 }
 
 const categories = [
-  { id: "all", label: "All", icon: Layers },
-  { id: "svod", label: "SVOD", icon: Tv },
-  { id: "music", label: "Music", icon: Music },
+  { id: "all", label: "全部", icon: Layers },
+  { id: "svod", label: "视频", icon: Tv },
+  { id: "music", label: "音乐", icon: Music },
   { id: "ai", label: "AI", icon: Brain },
-  { id: "software", label: "Software", icon: Laptop },
-  { id: "games", label: "Games", icon: Gamepad2 },
-  { id: "marketplace", label: "Marketplace", icon: Store },
+  { id: "software", label: "软件", icon: Laptop },
+  { id: "games", label: "游戏", icon: Gamepad2 },
+  { id: "marketplace", label: "商城", icon: Store },
 ];
 
 const CategoryTabs = ({ activeCategory, onCategoryChange }: CategoryTabsProps) => {

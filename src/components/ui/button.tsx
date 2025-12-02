@@ -19,6 +19,7 @@ const buttonVariants = cva(
         glass: "glass text-foreground hover:bg-card/70 border-primary/20",
         pill: "rounded-full bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground",
         pillActive: "rounded-full gradient-primary text-primary-foreground shadow-glow",
+        nav: "bg-foreground text-background hover:opacity-90 font-medium",
       },
       size: {
         default: "h-10 px-4 py-2",

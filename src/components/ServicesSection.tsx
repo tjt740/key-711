@@ -11,12 +11,12 @@ const services = [
     price: 4.99,
     originalPrice: 22.99,
     features: [
-      "4K Ultra HD streaming",
-      "Watch on 4 devices",
-      "Ad-free experience",
+      "4K 超高清",
+      "4 设备同时观看",
+      "无广告体验",
     ],
     activeUsers: 45230,
-    tag: "Most Popular",
+    tag: "最受欢迎",
   },
   {
     id: 2,
@@ -26,12 +26,12 @@ const services = [
     price: 5.77,
     originalPrice: 20.00,
     features: [
-      "GPT-4o & GPT-5.1 access",
-      "DALL-E 3 image generation",
-      "Priority access",
+      "GPT-4o & GPT-5.1 访问",
+      "DALL-E 3 图像生成",
+      "优先访问",
     ],
     activeUsers: 32150,
-    tag: "🔥 Hot",
+    tag: "🔥 热门",
   },
   {
     id: 3,
@@ -41,9 +41,9 @@ const services = [
     price: 2.49,
     originalPrice: 10.99,
     features: [
-      "Ad-free music",
-      "Offline downloads",
-      "High-quality audio",
+      "无广告音乐",
+      "离线下载",
+      "高品质音频",
     ],
     activeUsers: 58420,
   },
@@ -55,9 +55,9 @@ const services = [
     price: 3.49,
     originalPrice: 13.99,
     features: [
-      "Disney, Marvel, Star Wars",
-      "4K HDR streaming",
-      "Up to 4 devices",
+      "迪士尼、漫威、星球大战",
+      "4K HDR 流媒体",
+      "最多 4 设备",
     ],
     activeUsers: 28940,
   },
@@ -69,9 +69,9 @@ const services = [
     price: 2.99,
     originalPrice: 13.99,
     features: [
-      "Ad-free videos",
-      "Background play",
-      "YouTube Music included",
+      "无广告视频",
+      "后台播放",
+      "含 YouTube Music",
     ],
     activeUsers: 41200,
   },
@@ -83,9 +83,9 @@ const services = [
     price: 2.00,
     originalPrice: 12.99,
     features: [
-      "High-speed VPN",
-      "Anti-malware protection",
-      "Ad & tracker blocker",
+      "高速 VPN",
+      "反恶意软件保护",
+      "广告和追踪器拦截",
     ],
     activeUsers: 19870,
   },
@@ -97,9 +97,9 @@ const services = [
     price: 3.29,
     originalPrice: 12.99,
     features: [
-      "Premium templates",
-      "Brand kit",
-      "Background remover",
+      "高级模板",
+      "品牌套件",
+      "背景移除",
     ],
     activeUsers: 24500,
   },
@@ -111,9 +111,9 @@ const services = [
     price: 2.79,
     originalPrice: 10.99,
     features: [
-      "100M+ songs",
-      "Lossless audio",
-      "Spatial audio",
+      "1亿+ 歌曲",
+      "无损音频",
+      "空间音频",
     ],
     activeUsers: 35600,
   },
@@ -125,12 +125,12 @@ const services = [
     price: 6.49,
     originalPrice: 20.00,
     features: [
-      "Claude 3.5 Sonnet access",
-      "5x more usage",
-      "Priority access",
+      "Claude 3.5 Sonnet 访问",
+      "5倍用量",
+      "优先访问",
     ],
     activeUsers: 15230,
-    tag: "New",
+    tag: "新品",
   },
   {
     id: 10,
@@ -140,9 +140,9 @@ const services = [
     price: 5.99,
     originalPrice: 16.99,
     features: [
-      "100+ games",
-      "Day one releases",
-      "EA Play included",
+      "100+ 游戏",
+      "首发日畅玩",
+      "含 EA Play",
     ],
     activeUsers: 22100,
   },
@@ -154,9 +154,9 @@ const services = [
     price: 4.99,
     originalPrice: 10.00,
     features: [
-      "AI image generation",
-      "Fast mode hours",
-      "Commercial license",
+      "AI 图像生成",
+      "快速模式时长",
+      "商业许可",
     ],
     activeUsers: 18900,
   },
@@ -168,9 +168,9 @@ const services = [
     price: 2.49,
     originalPrice: 9.99,
     features: [
-      "Ad-free anime",
-      "New episodes simulcast",
-      "Offline viewing",
+      "无广告动漫",
+      "新番同步",
+      "离线观看",
     ],
     activeUsers: 27800,
   },
@@ -186,16 +186,16 @@ const ServicesSection = () => {
   return (
     <section id="services" className="py-20 relative">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--muted)/0.3),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--muted)/0.5),transparent_70%)]" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Popular <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Subscriptions</span>
+            热门 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">订阅服务</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Choose from 50+ premium services and start saving today. All subscriptions are 100% legal and secure.
+            从 50+ 高端服务中选择，立即开始省钱。所有订阅100%合法且安全。
           </p>
         </div>
 

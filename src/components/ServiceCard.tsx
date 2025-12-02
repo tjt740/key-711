@@ -26,12 +26,12 @@ const ServiceCard = ({
 
   return (
     <div
-      className="group relative rounded-2xl gradient-card border border-border/50 p-6 transition-all duration-500 hover:shadow-card-hover hover:border-primary/30 hover:-translate-y-1 animate-fade-in"
+      className="group relative rounded-2xl bg-card border border-border p-6 transition-all duration-500 hover:shadow-card-hover hover:border-primary/30 hover:-translate-y-1 animate-fade-in"
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Tag */}
       {tag && (
-        <div className="absolute -top-3 left-6 px-3 py-1 rounded-full gradient-secondary text-xs font-bold text-secondary-foreground">
+        <div className="absolute -top-3 left-6 px-3 py-1 rounded-full gradient-primary text-xs font-bold text-primary-foreground">
           {tag}
         </div>
       )}
@@ -53,9 +53,9 @@ const ServiceCard = ({
       {/* Price */}
       <div className="flex items-baseline gap-2 mb-4">
         <span className="text-3xl font-extrabold text-foreground">${price.toFixed(2)}</span>
-        <span className="text-sm text-muted-foreground">/month</span>
+        <span className="text-sm text-muted-foreground">/月</span>
         <span className="text-sm text-muted-foreground line-through">${originalPrice.toFixed(2)}</span>
-        <span className="px-2 py-0.5 rounded-md bg-primary/20 text-primary text-xs font-semibold">
+        <span className="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-xs font-semibold">
           -{discount}%
         </span>
       </div>
@@ -76,21 +76,21 @@ const ServiceCard = ({
           {[...Array(4)].map((_, i) => (
             <div
               key={i}
-              className="w-7 h-7 rounded-full bg-muted border-2 border-card flex items-center justify-center text-xs text-muted-foreground"
+              className="w-7 h-7 rounded-full border-2 border-card flex items-center justify-center text-xs text-primary-foreground font-medium"
               style={{ 
-                backgroundColor: `hsl(${(i * 60 + 180) % 360} 40% 30%)`,
+                background: `linear-gradient(135deg, hsl(${221 + i * 30} 70% 55%), hsl(${270 + i * 30} 70% 60%))`,
               }}
             >
               {String.fromCharCode(65 + i)}
             </div>
           ))}
         </div>
-        <span className="text-xs text-muted-foreground">+{activeUsers - 4} members</span>
+        <span className="text-xs text-muted-foreground">+{activeUsers - 4} 成员</span>
       </div>
 
       {/* CTA */}
-      <Button variant="hero" className="w-full group-hover:shadow-glow">
-        Get Started
+      <Button variant="hero" className="w-full">
+        立即订阅
       </Button>
     </div>
   );
