@@ -190,13 +190,9 @@ const ServicesSection = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            热门 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">订阅服务</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            从 50+ 高端服务中选择，立即开始省钱。所有订阅100%合法且安全。
-          </p>
+        <div className="flex items-center justify-between mb-10">
+          <h2 className="text-3xl font-bold text-foreground">热门订阅</h2>
+          <a href="#" className="text-primary font-medium hover:underline">查看全部 &rarr;</a>
         </div>
 
         {/* Category Tabs */}
