@@ -3,23 +3,23 @@ import { UserPlus, Search, CreditCard, Rocket } from "lucide-react";
 const steps = [
   {
     icon: UserPlus,
-    title: "Create Account",
-    description: "Sign up for free in seconds. No credit card required.",
+    title: "创建账户",
+    description: "几秒钟内免费注册，无需信用卡。",
   },
   {
     icon: Search,
-    title: "Choose a Service",
-    description: "Browse 50+ premium subscriptions at unbeatable prices.",
+    title: "选择服务",
+    description: "浏览 50+ 高端订阅，超低价格。",
   },
   {
     icon: CreditCard,
-    title: "Make Payment",
-    description: "Pay securely with card, PayPal, or crypto.",
+    title: "安全支付",
+    description: "支持银行卡、PayPal 或加密货币。",
   },
   {
     icon: Rocket,
-    title: "Start Using",
-    description: "Get instant access to your premium subscription.",
+    title: "开始使用",
+    description: "即刻获得高端订阅访问权限。",
   },
 ];
 
@@ -27,16 +27,16 @@ const HowItWorks = () => {
   return (
     <section id="how-it-works" className="py-20 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            How It <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Works</span>
+            如何 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">使用</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Get started in minutes with our simple 4-step process
+            简单 4 步，几分钟即可开始
           </p>
         </div>
 
@@ -61,7 +61,7 @@ const HowItWorks = () => {
                 </div>
 
                 {/* Icon */}
-                <div className="w-24 h-24 mx-auto mb-6 rounded-2xl glass flex items-center justify-center group-hover:shadow-glow transition-shadow">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-muted border border-border flex items-center justify-center transition-shadow hover:shadow-glow">
                   <Icon className="w-10 h-10 text-primary" />
                 </div>
 
