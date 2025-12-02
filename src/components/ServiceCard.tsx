@@ -18,7 +18,6 @@ const ServiceCard = ({
   price,
   originalPrice,
   features,
-  activeUsers,
   tag,
   delay = 0,
 }: ServiceCardProps) => {
@@ -51,30 +50,32 @@ const ServiceCard = ({
         </div>
 
         <h3 className="text-lg font-bold text-foreground mb-1">{name}</h3>
-        <p className="text-muted-foreground text-xs mb-4">{activeUsers.toLocaleString()}+ 用户正在使用</p>
+        <p className="text-muted-foreground text-xs mb-4">{features.join(" • ")}</p>
 
         {/* 价格区域 */}
         <div className="flex items-baseline gap-2 mb-4">
-          <span className="text-3xl font-extrabold text-foreground">${price.toFixed(2)}</span>
+          <span className="text-3xl font-extrabold text-foreground">${price}</span>
           <span className="text-sm text-muted-foreground font-medium">/月</span>
-          <span className="text-xs text-muted-foreground line-through ml-auto">原价 ${originalPrice.toFixed(2)}</span>
+          <span className="text-xs text-muted-foreground line-through ml-auto">原价 ${originalPrice}</span>
         </div>
 
         {/* 权益列表 */}
         <div className="space-y-2 mb-6">
-          {features.slice(0, 3).map((feature, index) => (
-            <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground">
-              <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-              <span>{feature}</span>
-            </div>
-          ))}
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+            <span>自动发货，秒级响应</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+            <span>支持续费，账号稳定</span>
+          </div>
         </div>
       </div>
 
       {/* 底部按钮 */}
       <div className="p-4 bg-muted/50 border-t border-border">
         <Button variant="hero" className="w-full py-3 flex items-center justify-center gap-2">
-          立即购买 
+          立即购买
           <span className="text-xs bg-white/20 px-1.5 py-0.5 rounded">省 {discount}%</span>
         </Button>
       </div>
