@@ -84,7 +84,7 @@ export default function ProfilePage() {
         {/* 用户信息卡 */}
         <section className="bg-card border border-border rounded-2xl p-6 md:p-8 mb-8 shadow-sm">
           <div className="flex items-center gap-5">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white text-2xl font-bold overflow-hidden">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-2xl font-bold overflow-hidden">
               {profile?.avatar_url ? (
                 <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" />
               ) : (
