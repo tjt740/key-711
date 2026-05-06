@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { CheckCircle2, CreditCard, Lock, Mail, ChevronLeft, Ticket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 // 模拟产品数据库
 const productsDB: Record<number, {
@@ -31,6 +34,8 @@ const paymentMethods = [
 
 export default function CheckoutPage() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const productId = Number(searchParams.get("productId")) || 1;
   const product = productsDB[productId] || productsDB[1];
 
@@ -39,19 +44,46 @@ export default function CheckoutPage() {
   const [couponCode, setCouponCode] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
 
+  useEffect(() => {
+    if (!authLoading && !user) {
+      toast.info("请先登录后再下单");
+      navigate(`/auth?redirect=/checkout?productId=${productId}`);
+    }
+    if (user?.email) setEmail(user.email);
+  }, [user, authLoading, navigate, productId]);
+
   const total = product.price;
 
   const handlePay = async () => {
+    if (!user) return navigate("/auth");
     if (!email.includes("@")) {
-      alert("请填写有效的电子邮箱用于接收账号");
+      toast.error("请填写有效的电子邮箱");
       return;
     }
     setIsProcessing(true);
-    console.log("发起支付:", { productId: product.id, email, paymentMethod: selectedPayment, total });
-    setTimeout(() => {
-      setIsProcessing(false);
-      alert("演示模式：支付流程已触发。在真实环境中，这里会跳转到 Stripe/PayPal 页面。");
-    }, 1500);
+    const expiresAt = new Date();
+    expiresAt.setMonth(expiresAt.getMonth() + 1);
+
+    const { error } = await supabase.from("orders").insert({
+      user_id: user.id,
+      product_id: product.id,
+      product_title: product.title,
+      duration: product.duration,
+      amount: total,
+      currency: "USD",
+      payment_method: selectedPayment,
+      status: "active",
+      account_email: email,
+      expires_at: expiresAt.toISOString(),
+    });
+
+    setIsProcessing(false);
+    if (error) {
+      toast.error("下单失败：" + error.message);
+      return;
+    }
+    toast.success("订单创建成功！");
+    navigate("/profile");
   };
 
   return (

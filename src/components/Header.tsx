@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import { Search, User, Globe, ShoppingCart, Menu } from "lucide-react";
+import { Search, User, Globe, ShoppingCart, Menu, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
 const Header = () => {
+  const { user, signOut } = useAuth();
   return (
     <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -34,10 +36,26 @@ const Header = () => {
           <Button variant="ghost" size="icon" className="rounded-full">
             <ShoppingCart className="w-5 h-5" />
           </Button>
-          <Button variant="nav" size="sm" className="rounded-full gap-2">
-            <User className="w-4 h-4" />
-            登录 / 注册
-          </Button>
+          {user ? (
+            <>
+              <Button asChild variant="nav" size="sm" className="rounded-full gap-2">
+                <Link to="/profile">
+                  <User className="w-4 h-4" />
+                  个人中心
+                </Link>
+              </Button>
+              <Button variant="ghost" size="icon" className="rounded-full" onClick={() => signOut()}>
+                <LogOut className="w-4 h-4" />
+              </Button>
+            </>
+          ) : (
+            <Button asChild variant="nav" size="sm" className="rounded-full gap-2">
+              <Link to="/auth">
+                <User className="w-4 h-4" />
+                登录 / 注册
+              </Link>
+            </Button>
+          )}
         </div>
 
         {/* Mobile Menu */}
