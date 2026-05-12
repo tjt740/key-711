@@ -192,14 +192,7 @@ const ServicesSection = () => {
           <a href="#" className="text-sm text-primary font-semibold hover:underline">查看全部 →</a>
         </div>
 
-        {/* Category Tabs */}
-        <CategoryTabs 
-          activeCategory={activeCategory} 
-          onCategoryChange={setActiveCategory} 
-        />
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredServices.map((service, index) => (
             <ServiceCard
               key={service.id}
