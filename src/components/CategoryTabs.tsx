@@ -1,51 +1,38 @@
-import { Button } from "@/components/ui/button";
-import { 
-  Layers, 
-  Tv, 
-  Music, 
-  Brain, 
-  Laptop, 
-  Gamepad2,
-  Store
-} from "lucide-react";
-
 interface CategoryTabsProps {
   activeCategory: string;
   onCategoryChange: (category: string) => void;
 }
 
 const categories = [
-  { id: "all", label: "全部", icon: Layers },
-  { id: "svod", label: "视频", icon: Tv },
-  { id: "music", label: "音乐", icon: Music },
-  { id: "ai", label: "AI", icon: Brain },
-  { id: "software", label: "软件", icon: Laptop },
-  { id: "games", label: "游戏", icon: Gamepad2 },
-  { id: "marketplace", label: "商城", icon: Store },
+  { id: "all", label: "全部", icon: "⊞" },
+  { id: "svod", label: "影音", icon: "📺" },
+  { id: "ai", label: "AI 人工智能", icon: "🧠" },
+  { id: "music", label: "音乐", icon: "🎵" },
+  { id: "software", label: "软件", icon: "💻" },
+  { id: "games", label: "游戏", icon: "🎮" },
+  { id: "marketplace", label: "市场", icon: "🏪" },
 ];
 
-const CategoryTabs = ({ activeCategory, onCategoryChange }: CategoryTabsProps) => {
-  return (
-    <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-10">
-      {categories.map((category) => {
-        const Icon = category.icon;
-        const isActive = activeCategory === category.id;
-        
+const CategoryTabs = ({ activeCategory, onCategoryChange }: CategoryTabsProps) => (
+  <div className="bg-card border-y border-border -mx-6 px-6 mb-8">
+    <div className="flex items-center gap-1 py-3 overflow-x-auto scrollbar-none">
+      {categories.map((c) => {
+        const on = activeCategory === c.id;
         return (
-          <Button
-            key={category.id}
-            variant={isActive ? "pillActive" : "pill"}
-            size="sm"
-            onClick={() => onCategoryChange(category.id)}
-            className="gap-2"
+          <button
+            key={c.id}
+            onClick={() => onCategoryChange(c.id)}
+            className={`flex flex-col items-center gap-1.5 px-5 py-2.5 rounded-[14px] min-w-[80px] flex-shrink-0 transition ${
+              on ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-accent hover:text-primary"
+            }`}
           >
-            <Icon className="w-4 h-4" />
-            <span className="hidden sm:inline">{category.label}</span>
-          </Button>
+            <span className="text-[22px] leading-none">{c.icon}</span>
+            <span className="text-xs font-semibold whitespace-nowrap">{c.label}</span>
+          </button>
         );
       })}
     </div>
-  );
-};
+  </div>
+);
 
 export default CategoryTabs;
