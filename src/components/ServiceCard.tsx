@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +13,12 @@ interface ServiceCardProps {
   delay?: number;
 }
 
+const tagStyles: Record<string, string> = {
+  "最受欢迎": "bg-accent text-accent-foreground border border-primary/30",
+  "🔥 热门": "bg-accent text-accent-foreground border border-primary/30",
+  "新品": "bg-blue-50 text-blue-600 border border-blue-200",
+};
+
 const ServiceCard = ({
   id = 1,
   name,
@@ -27,65 +32,51 @@ const ServiceCard = ({
   const navigate = useNavigate();
   const discount = Math.round(((originalPrice - price) / originalPrice) * 100);
 
-  const handleBuy = () => {
-    navigate(`/checkout?productId=${id}`);
-  };
-
   return (
     <div
-      className="group relative bg-card rounded-2xl border border-border hover:border-primary/50 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col animate-fade-in"
+      className="group relative bg-card rounded-[20px] border border-border overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover animate-fade-in"
       style={{ animationDelay: `${delay}ms` }}
     >
-      {/* 热门/促销标签 */}
       {tag && (
-        <div className="absolute top-0 right-0 bg-destructive text-destructive-foreground text-[10px] font-bold px-3 py-1 rounded-bl-xl z-10">
+        <span className={`absolute top-4 left-4 z-10 px-2 py-0.5 rounded text-[11px] font-bold tracking-wider uppercase ${tagStyles[tag] ?? "bg-accent text-accent-foreground border border-primary/30"}`}>
           {tag}
-        </div>
+        </span>
       )}
 
-      <div className="p-5 flex-1">
-        {/* 产品头部 */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="w-14 h-14 rounded-xl bg-muted flex items-center justify-center overflow-hidden shadow-lg">
+      <div className="p-6 flex-1">
+        <div className="flex items-center gap-3.5 mb-5">
+          <div className="w-[60px] h-[60px] rounded-[14px] bg-muted border border-border flex items-center justify-center overflow-hidden">
             <img src={logo} alt={name} className="w-10 h-10 object-contain" />
           </div>
-          <div className="flex flex-col items-end">
-            <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-              库存充足
-            </span>
+          <div>
+            <h3 className="text-lg font-bold text-foreground tracking-tight">{name}</h3>
+            <p className="text-xs text-muted-foreground/70 mt-0.5">官方授权 · 安全稳定</p>
           </div>
         </div>
 
-        <h3 className="text-lg font-bold text-foreground mb-1">{name}</h3>
-        <p className="text-muted-foreground text-xs mb-4">{features.join(" • ")}</p>
-
-        {/* 价格区域 */}
-        <div className="flex items-baseline gap-2 mb-4">
-          <span className="text-3xl font-extrabold text-foreground">${price}</span>
-          <span className="text-sm text-muted-foreground font-medium">/月</span>
-          <span className="text-xs text-muted-foreground line-through ml-auto">原价 ${originalPrice}</span>
+        <div className="flex items-baseline gap-2.5 mb-4">
+          <span className="text-[32px] leading-none font-extrabold text-primary">${price}</span>
+          <span className="text-xs text-muted-foreground/70">/月</span>
+          <span className="text-sm text-muted-foreground/60 line-through ml-auto">${originalPrice}</span>
         </div>
 
-        {/* 权益列表 */}
-        <div className="space-y-2 mb-6">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-            <span>自动发货，秒级响应</span>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-            <span>支持续费，账号稳定</span>
-          </div>
+        <div className="flex flex-col gap-2 mb-6">
+          {features.slice(0, 3).map((f, i) => (
+            <div key={i} className="flex items-start gap-2 text-[13px] text-muted-foreground leading-snug">
+              <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+              <span>{f}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* 底部按钮 */}
-      <div className="p-4 bg-muted/50 border-t border-border">
-        <Button variant="hero" className="w-full py-3 flex items-center justify-center gap-2" onClick={handleBuy}>
-          立即购买
-          <span className="text-xs bg-white/20 px-1.5 py-0.5 rounded">省 {discount}%</span>
-        </Button>
+      <div className="px-6 pb-6">
+        <button
+          onClick={() => navigate(`/checkout?productId=${id}`)}
+          className="w-full py-3.5 rounded-[14px] bg-primary text-primary-foreground text-[15px] font-bold hover:bg-primary/90 hover:shadow-glow active:scale-[0.98] transition"
+        >
+          立即购买 · 省 {discount}%
+        </button>
       </div>
     </div>
   );

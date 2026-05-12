@@ -184,25 +184,15 @@ const ServicesSection = () => {
   );
 
   return (
-    <section id="services" className="py-20 relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--muted)/0.5),transparent_70%)]" />
-      
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="text-3xl font-bold text-foreground">热门订阅</h2>
-          <a href="#" className="text-primary font-medium hover:underline">查看全部 &rarr;</a>
+    <section id="services" className="py-12 bg-background">
+      <div className="container mx-auto px-6">
+        <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+        <div className="flex items-center justify-between mb-7">
+          <h2 className="text-xl font-bold text-foreground">热门订阅</h2>
+          <a href="#" className="text-sm text-primary font-semibold hover:underline">查看全部 →</a>
         </div>
 
-        {/* Category Tabs */}
-        <CategoryTabs 
-          activeCategory={activeCategory} 
-          onCategoryChange={setActiveCategory} 
-        />
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredServices.map((service, index) => (
             <ServiceCard
               key={service.id}
